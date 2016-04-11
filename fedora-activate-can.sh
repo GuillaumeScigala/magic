@@ -24,7 +24,7 @@ rpmdev-setuptree
 if [ -e .oldkernels/$KERNEL_RPM_NAME ]; then
     mv .oldkernels/$KERNEL_RPM_NAME .
 else
-    yumdownloader --source kernel
+    dnf download --source kernel
 fi
 
 if [ ! -e $KERNEL_RPM_NAME ]; then
@@ -32,7 +32,7 @@ if [ ! -e $KERNEL_RPM_NAME ]; then
     exit -1
 fi
 
-sudo yum-builddep $KERNEL_RPM_NAME
+sudo dnf builddep $KERNEL_RPM_NAME
 
 rpm -Uvh $KERNEL_RPM_NAME
 mv $KERNEL_RPM_NAME .oldkernels
